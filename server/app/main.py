@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from agent import run_agent
-from langchain_community.chat_models import ChatOllama
+from langchain_ollama import ChatOllama
 
 app = FastAPI()
+
 llm = ChatOllama(model="gemma3:8b", temperature=0.2)
 
 class ChatRequest(BaseModel):
