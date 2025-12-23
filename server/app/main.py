@@ -29,6 +29,20 @@ class BillResponse(BaseModel):
     provider: str
     account_number: str = None
 
+@app.get("/")
+async def root():
+    return {
+        "message": "Bill Payment Tracker API",
+        "endpoints": {
+            "api_docs": "/docs",
+            "bills": "/bills",
+            "upcoming_bills": "/bills/upcoming?days=7",
+            "overdue_bills": "/bills/overdue",
+            "alerts": "/bills/alerts",
+            "chat": "/chat (POST)"
+        }
+    }
+
 @app.post("/chat")
 async def chat(req: ChatRequest):
     response = llm.invoke(req.message)
